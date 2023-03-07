@@ -81,6 +81,7 @@ def title_screen():
         level = shelfFile['level']
     else:
         level = 1
+        shelfFile['level'] = level
     shelfFile.close()
 
     xpos, ypos = event_handling()
@@ -366,8 +367,8 @@ def addition(val_list, current_matrix, current_color_matrix, level):
         return current_matrix, current_color_matrix
 
     inc_val = color_jump(level)
-    new_color_matrix: ndarray = np.copy(current_color_matrix)
-    new_matrix: ndarray = np.copy(current_matrix)
+    new_color_matrix = np.copy(current_color_matrix)
+    new_matrix = np.copy(current_matrix)
 
     for k in range(int(len(val_list) / 2)):
 
@@ -397,8 +398,8 @@ def slide(val_ind, current_matrix, current_color_matrix, level):
         return current_matrix, current_color_matrix
 
     inc_val = color_jump(level)
-    new_color_matrix: ndarray = np.copy(current_color_matrix)
-    new_matrix: ndarray = np.copy(current_matrix)
+    new_color_matrix = np.copy(current_color_matrix)
+    new_matrix = np.copy(current_matrix)
 
     for i in range(len(val_ind)):
         new_matrix[int(val_ind[i][0])][int(val_ind[i][1])] = current_matrix[int(val_ind[i - 1][0])][
@@ -706,13 +707,13 @@ def text_list(text_for_screen, level):
     if text_for_screen == 'puzzle':
         button_name_list = [
             ("A D D", pygame.font.Font(FONT, 30),
-             (255, 255, 255), window, 98, 185),
+             (0, 255, 0), window, 98, 185),
             ("S L I D E", pygame.font.Font(FONT, 30),
-             (255, 255, 255), window, 70, 318),
+             (0, 0, 255), window, 70, 318),
             ("R O W", pygame.font.Font(FONT, 30),
-             (255, 255, 255), window, 100, 451),
+             (255, 0, 0), window, 100, 451),
             ("C O L U M N", pygame.font.Font(FONT, 25),
-             (255, 255, 255), window, 70, 585),
+             (255, 0, 0), window, 70, 585),
             ("HELP", pygame.font.Font(FONT, 20),
              (255, 255, 255), window, 1025, 15),
             ("LEVEL: " + str(level), pygame.font.Font(FONT, 20),
